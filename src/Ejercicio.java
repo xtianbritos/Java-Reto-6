@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Ejercicio {
 
-    static int opcion;
+    static int opcion, contador = 0;
 
     static String marca, placa, nombre, telefono;
 
@@ -21,6 +21,7 @@ public class Ejercicio {
                 placa = entrada.nextLine();
 
                 System.out.println("\nSu vehículo ha sido ingresado al parqueadero.");
+                contador++;
                 break;
             }
             case 2: {
@@ -30,6 +31,7 @@ public class Ejercicio {
                 placa = entrada.nextLine();
 
                 System.out.println("\nSu vehículo ha sido retirado del parqueadero.");
+                contador--;
                 break;
             }
             case 3: {
@@ -53,8 +55,6 @@ public class Ejercicio {
 
     public static void main(String[] args) {
 
-        int contador = 0;
-
         Scanner input = new Scanner(System.in);
 
         while(contador<=5) {
@@ -64,6 +64,8 @@ public class Ejercicio {
                     "2 - Retirar del parqueadero\n"+
                     "3 - Consultar si un vehículo se encuentra en el parqueadero\n"+
                     "4 - Salir del programa\n");
+
+            opcion = input.nextInt();
 
             opcionesMenu();
         }
