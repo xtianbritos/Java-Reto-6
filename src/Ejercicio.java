@@ -1,10 +1,16 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Ejercicio {
 
+    static Vehiculo vehiculo = new Vehiculo();
+
+    static List<Vehiculo> parqueados = new ArrayList<>();
+
     static int opcion, contador = 0;
 
-    static String marca, placa, nombre, telefono;
+    static String placa;
 
     static Scanner entrada = new Scanner(System.in);
 
@@ -12,37 +18,47 @@ public class Ejercicio {
         switch(opcion) {
             case 1: {
                 System.out.println("Ingrese su nombre completo:");
-                nombre = entrada.nextLine();
+                vehiculo.nombre = entrada.nextLine();
                 System.out.println("Ingrese su teléfono:");
-                telefono = entrada.nextLine();
+                vehiculo.telefono = entrada.nextLine();
                 System.out.println("Ingrese la marca del vehículo:");
-                marca = entrada.nextLine();
+                vehiculo.marca = entrada.nextLine();
                 System.out.println("Ingrese la placa del vehículo:");
-                placa = entrada.nextLine();
+                vehiculo.placa = entrada.nextLine();
+
+                parqueados.add(vehiculo);
 
                 System.out.println("\nSu vehículo ha sido ingresado al parqueadero.");
-                contador++;
                 break;
             }
             case 2: {
-                System.out.println("Ingrese su teéfono:");
-                telefono = entrada.nextLine();
-                System.out.println("Ingrese la placa de su vehículo:");
-                placa = entrada.nextLine();
+                System.out.println("Ingrese su nombre completo:");
+                vehiculo.nombre = entrada.nextLine();
+                System.out.println("Ingrese su teléfono:");
+                vehiculo.telefono = entrada.nextLine();
+                System.out.println("Ingrese la marca del vehículo:");
+                vehiculo.marca = entrada.nextLine();
+                System.out.println("Ingrese la placa del vehículo:");
+                vehiculo.placa = entrada.nextLine();
 
-                System.out.println("\nSu vehículo ha sido retirado del parqueadero.");
-                contador--;
+                System.out.println(retirar(vehiculo));
                 break;
             }
             case 3: {
+                System.out.println("Ingrese su nombre completo:");
+                vehiculo.nombre = entrada.nextLine();
+                System.out.println("Ingrese su teléfono:");
+                vehiculo.telefono = entrada.nextLine();
+                System.out.println("Ingrese la marca del vehículo:");
+                vehiculo.marca = entrada.nextLine();
                 System.out.println("Ingrese la placa del vehículo:");
-                placa = entrada.nextLine();
+                vehiculo.placa = entrada.nextLine();
 
-                if (placa.equals("123abc")) {
-                    System.out.println("El vehículo se encuentra en el parqueadero.");
+                if (buscar(vehiculo)) {
+                    System.out.println("\nSu vehículo se encuentra en el parqueadero.");
                 }
                 else {
-                    System.out.println("El vehículo NO se encuentra en el parqueadero.");
+                    System.out.println("\nSu vehículo NO se encuentra en el parqueadero.");
                 }
                 break;
             }
@@ -53,11 +69,28 @@ public class Ejercicio {
         }
     }
 
+    static public Boolean buscar(Vehiculo placa){
+
+        if(parqueados.contains(vehiculo)) {
+            return true;
+        }
+        return false;
+    }
+
+    static public String retirar(Vehiculo vehiculo){
+        if(buscar(vehiculo)) {
+            parqueados.remove(parqueados.indexOf(vehiculo));
+            return "\nSu vehículo ha sido retirado del parqueadero.";
+        }
+        return "\nNo se ha encontrado su vehículo.";
+    }
+
+
     public static void main(String[] args) {
 
         Scanner input = new Scanner(System.in);
 
-        while(contador<=5) {
+        while(parqueados.size()<=5) {
 
             System.out.println("\nElija una opción:\n"+
                     "1 - Ingresar al parqueadero\n"+
