@@ -5,14 +5,10 @@ import java.util.Scanner;
 public class Ejercicio {
 
     static Vehiculo vehiculo = new Vehiculo();
-
     static List<Vehiculo> parqueados = new ArrayList<>();
-
-    static int opcion, contador = 0;
-
-    static String placa;
-
+    static int opcion;
     static Scanner entrada = new Scanner(System.in);
+
 
     static void opcionesMenu() {
         switch(opcion) {
@@ -69,17 +65,17 @@ public class Ejercicio {
         }
     }
 
-    static public Boolean buscar(Vehiculo placa){
+    static public Boolean buscar(Vehiculo vehi){
 
-        if(parqueados.contains(vehiculo)) {
+        if(parqueados.contains(vehi)) {
             return true;
         }
         return false;
     }
 
-    static public String retirar(Vehiculo vehiculo){
-        if(buscar(vehiculo)) {
-            parqueados.remove(parqueados.indexOf(vehiculo));
+    static public String retirar(Vehiculo velo){
+        if(buscar(velo)) {
+            parqueados.remove(parqueados.indexOf(velo));
             return "\nSu vehículo ha sido retirado del parqueadero.";
         }
         return "\nNo se ha encontrado su vehículo.";
